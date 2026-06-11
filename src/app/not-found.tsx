@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
-import { Home, LifeBuoy } from "lucide-react";
+import { Home } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { useT } from "@/i18n/I18nProvider";
 
 export default function NotFound() {
+  const t = useT().notFound;
   return (
     <Container className="flex min-h-[70vh] flex-col items-center justify-center py-20 text-center">
       <div className="relative">
@@ -16,20 +19,16 @@ export default function NotFound() {
         </p>
       </div>
       <h1 className="mt-6 text-2xl font-bold tracking-tight sm:text-3xl">
-        This page took an unexpected detour
+        {t.title}
       </h1>
-      <p className="mt-3 max-w-md text-pretty text-muted">
-        The page you're looking for doesn't exist or may have moved. Let's get
-        you back on track.
-      </p>
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        <Button href="/">
-          <Home className="size-4" /> Back home
-        </Button>
-        <Button href="/contact" variant="outline">
-          <LifeBuoy className="size-4" /> Get help
-        </Button>
-      </div>
+      <p className="mt-3 max-w-md text-pretty text-muted">{t.desc}</p>
+      <Link
+        href="/"
+        className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-7 font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:bg-primary/90"
+      >
+        <Home className="size-4" aria-hidden />
+        {t.home}
+      </Link>
     </Container>
   );
 }

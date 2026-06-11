@@ -1,28 +1,27 @@
+"use client";
+
 import Link from "next/link";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Accordion } from "@/components/ui/Accordion";
 import { Reveal } from "@/components/motion/Reveal";
-import { FAQS } from "@/lib/data";
+import { useT } from "@/i18n/I18nProvider";
 
-export function FaqSection() {
+export function Faq() {
+  const t = useT();
   return (
-    <Section>
+    <Section id="faq" className="bg-surface scroll-mt-16">
       <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr]">
         <SectionHeading
           align="left"
           eyebrow="FAQ"
-          title="Answers, before you ask"
-          description="Can't find what you're looking for? Our team is one tap away, any time of day."
+          title={t.faq.title}
+          description={t.faq.subtitle}
         />
         <Reveal>
-          <Accordion items={FAQS.slice(0, 5)} />
+          <Accordion items={t.faq.items.map((f) => ({ question: f.q, answer: f.a }))} />
           <p className="mt-6 text-sm text-muted">
-            Still curious?{" "}
-            <Link
-              href="/contact"
-              className="font-medium text-primary hover:underline"
-            >
-              Talk to our team →
+            <Link href="/#contacts" className="font-medium text-primary hover:underline">
+              {t.faq.more} →
             </Link>
           </p>
         </Reveal>

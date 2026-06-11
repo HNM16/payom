@@ -1,47 +1,60 @@
+"use client";
+
 import Link from "next/link";
-import { Mail, Phone, Hash, Briefcase, Camera, Code2 } from "lucide-react";
+import { Mail, Phone, MapPin, Hash, Briefcase, Camera, Send } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "./Logo";
-import { SITE, FOOTER_LINKS } from "@/lib/data";
+import { useT } from "@/i18n/I18nProvider";
 
-// Lucide removed dedicated brand glyphs, so we use neutral icons as stand-ins.
 const SOCIALS = [
-  { label: "X", href: "https://x.com", icon: Hash },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: Briefcase },
-  { label: "Instagram", href: "https://instagram.com", icon: Camera },
-  { label: "GitHub", href: "https://github.com", icon: Code2 },
+  { label: "Channel", href: "#", icon: Send },
+  { label: "Updates", href: "#", icon: Hash },
+  { label: "Business", href: "#", icon: Briefcase },
+  { label: "Media", href: "#", icon: Camera },
 ];
 
+const CONTACT = {
+  email: "info@payom.tj",
+  phone: "+992 44 600 00 00",
+  address: "Dushanbe, Tajikistan",
+};
+
 export function Footer() {
+  const t = useT();
+
   return (
-    <footer className="border-t border-border bg-surface">
+    <footer id="contacts" className="border-t border-border bg-surface scroll-mt-20">
       <Container className="py-16">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr]">
           <div className="max-w-sm">
             <Logo />
             <p className="mt-4 text-pretty text-sm leading-relaxed text-muted">
-              {SITE.description}
+              {t.footer.tagline}
             </p>
             <div className="mt-6 flex flex-col gap-2 text-sm">
               <a
-                href={`mailto:${SITE.email}`}
+                href={`mailto:${CONTACT.email}`}
                 className="inline-flex items-center gap-2 text-muted transition-colors hover:text-primary"
               >
                 <Mail className="size-4" aria-hidden />
-                {SITE.email}
+                {CONTACT.email}
               </a>
               <a
-                href={`tel:${SITE.phone.replace(/[^+\d]/g, "")}`}
+                href={`tel:${CONTACT.phone.replace(/[^+\d]/g, "")}`}
                 className="inline-flex items-center gap-2 text-muted transition-colors hover:text-primary"
               >
                 <Phone className="size-4" aria-hidden />
-                {SITE.phone}
+                {CONTACT.phone}
               </a>
+              <span className="inline-flex items-center gap-2 text-muted">
+                <MapPin className="size-4" aria-hidden />
+                {CONTACT.address}
+              </span>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-            {FOOTER_LINKS.map((group) => (
+            {t.footer.columns.map((group) => (
               <div key={group.title}>
                 <h3 className="text-sm font-semibold">{group.title}</h3>
                 <ul className="mt-4 flex flex-col gap-3">
@@ -63,15 +76,13 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
           <p className="text-sm text-muted">
-            © {new Date().getFullYear()} {SITE.name}. All rights reserved.
+            © {new Date().getFullYear()} Payom.tj. {t.footer.rights}
           </p>
           <ul className="flex items-center gap-2">
             {SOCIALS.map((s) => (
               <li key={s.label}>
                 <a
                   href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   aria-label={s.label}
                   className="grid size-10 place-items-center rounded-full border border-border text-muted transition-colors hover:border-primary/60 hover:text-primary"
                 >

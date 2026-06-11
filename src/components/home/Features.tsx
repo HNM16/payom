@@ -1,28 +1,41 @@
+"use client";
+
+import {
+  Megaphone,
+  Code2,
+  ShieldCheck,
+  Users,
+  BarChart3,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
-import { FEATURES } from "@/lib/data";
+import { useT } from "@/i18n/I18nProvider";
+
+const ICONS: LucideIcon[] = [Megaphone, Code2, ShieldCheck, Users, BarChart3, Zap];
 
 export function Features() {
+  const t = useT();
   return (
-    <Section className="bg-surface">
+    <Section id="features" className="scroll-mt-16">
       <SectionHeading
-        eyebrow="Why Veltra"
-        title="Built for the way money moves today"
-        description="A payment experience engineered around speed, trust, and clarity — without the clutter of traditional banking."
+        eyebrow={t.nav.features}
+        title={t.features.title}
+        description={t.features.subtitle}
       />
-
       <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {FEATURES.map((feature, i) => {
-          const Icon = feature.icon;
+        {t.features.items.map((feature, i) => {
+          const Icon = ICONS[i] ?? Zap;
           return (
             <Reveal key={feature.title} delay={(i % 3) * 0.06}>
-              <div className="group h-full rounded-2xl border border-border bg-background p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[var(--shadow-soft)]">
+              <div className="group h-full rounded-2xl border border-border bg-surface p-7 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/40">
                 <span className="grid size-12 place-items-center rounded-xl bg-gradient-to-br from-primary/15 to-accent/15 text-primary transition-transform duration-300 group-hover:scale-110">
                   <Icon className="size-6" aria-hidden />
                 </span>
                 <h3 className="mt-5 text-lg font-semibold">{feature.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
-                  {feature.description}
+                  {feature.desc}
                 </p>
               </div>
             </Reveal>

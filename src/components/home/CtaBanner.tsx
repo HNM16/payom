@@ -1,9 +1,13 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
+import { useT } from "@/i18n/I18nProvider";
 
 export function CtaBanner() {
+  const t = useT();
   return (
     <section className="pb-24">
       <Container>
@@ -16,27 +20,26 @@ export function CtaBanner() {
             />
             <div className="relative mx-auto max-w-2xl">
               <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-                Ready to make payments effortless?
+                {t.cta.title}
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-pretty text-white/85">
-                Join millions who've ditched the bill-day stress. Set up your
-                Veltra wallet in under a minute — it's free to start.
+                {t.cta.subtitle}
               </p>
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button
-                  href="/dashboard"
+                  href="/register"
                   size="lg"
                   className="bg-white text-primary shadow-none hover:bg-white/90"
                 >
-                  Create free account
+                  {t.cta.button}
                   <ArrowRight className="size-4" />
                 </Button>
                 <Button
-                  href="/contact"
+                  href="/#pricing"
                   size="lg"
                   className="border border-white/40 bg-transparent text-white shadow-none hover:bg-white/10"
                 >
-                  Contact sales
+                  {t.cta.secondary}
                 </Button>
               </div>
             </div>

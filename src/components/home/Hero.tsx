@@ -1,33 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  ShieldCheck,
-  Zap,
-  Wallet,
-  Smartphone,
-  Wifi,
-  Tv,
-  ArrowRight,
-  Check,
-} from "lucide-react";
+import { ArrowRight, Check, Send, BadgeCheck, Zap, Users } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { useT } from "@/i18n/I18nProvider";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
+  const t = useT();
+
   return (
     <section className="relative overflow-hidden">
-      {/* Decorative background */}
       <div className="absolute inset-0 -z-10 bg-grid opacity-60" aria-hidden />
       <div
         className="absolute left-1/2 top-[-10rem] -z-10 h-[34rem] w-[58rem] -translate-x-1/2 rounded-full bg-gradient-to-tr from-primary/25 via-accent/20 to-transparent blur-3xl"
         aria-hidden
       />
 
-      <Container className="grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-2 lg:gap-8">
+      <Container className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:gap-8">
         <div className="flex flex-col items-start">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -36,7 +29,7 @@ export function Hero() {
           >
             <Badge>
               <span className="size-1.5 rounded-full bg-primary" />
-              Trusted by 2.4M+ people
+              {t.hero.badge}
             </Badge>
           </motion.div>
 
@@ -46,8 +39,8 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.05, ease }}
             className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
           >
-            Pay for everything,{" "}
-            <span className="text-gradient">in seconds.</span>
+            {t.hero.title}{" "}
+            <span className="text-gradient">{t.hero.highlight}</span>
           </motion.h1>
 
           <motion.p
@@ -56,8 +49,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.12, ease }}
             className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted"
           >
-            Bills, top-ups, transfers, and subscriptions — all in one elegant
-            wallet. Veltra makes every payment instant, secure, and effortless.
+            {t.hero.subtitle}
           </motion.p>
 
           <motion.div
@@ -66,12 +58,12 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.18, ease }}
             className="mt-8 flex flex-col gap-3 sm:flex-row"
           >
-            <Button href="/dashboard" size="lg">
-              Get started free
+            <Button href="/register" size="lg">
+              {t.hero.ctaPrimary}
               <ArrowRight className="size-4" />
             </Button>
-            <Button href="/services" size="lg" variant="outline">
-              Explore services
+            <Button href="/api" size="lg" variant="outline">
+              {t.hero.ctaSecondary}
             </Button>
           </motion.div>
 
@@ -81,14 +73,12 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.28 }}
             className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted"
           >
-            {["No hidden fees", "Cancel anytime", "Bank-grade security"].map(
-              (item) => (
-                <li key={item} className="inline-flex items-center gap-1.5">
-                  <Check className="size-4 text-primary" aria-hidden />
-                  {item}
-                </li>
-              ),
-            )}
+            {t.hero.points.map((item) => (
+              <li key={item} className="inline-flex items-center gap-1.5">
+                <Check className="size-4 text-primary" aria-hidden />
+                {item}
+              </li>
+            ))}
           </motion.ul>
         </div>
 
@@ -99,6 +89,7 @@ export function Hero() {
 }
 
 function HeroCard() {
+  const t = useT();
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.97 }}
@@ -106,82 +97,72 @@ function HeroCard() {
       transition={{ duration: 0.7, delay: 0.2, ease }}
       className="relative mx-auto w-full max-w-md"
     >
-      {/* Main wallet card */}
       <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-6 shadow-[var(--shadow-soft)]">
         <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm text-muted">Total balance</p>
-            <p className="mt-1 text-3xl font-bold">$4,820.50</p>
+          <div className="flex items-center gap-2.5">
+            <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-primary to-accent text-white">
+              <Send className="size-5" aria-hidden />
+            </span>
+            <div>
+              <p className="text-sm font-semibold">Payom.tj</p>
+              <p className="text-xs text-muted">SMS gateway</p>
+            </div>
           </div>
-          <span className="grid size-11 place-items-center rounded-xl bg-gradient-to-br from-primary to-accent text-white">
-            <Wallet className="size-5" aria-hidden />
+          <span className="inline-flex items-center gap-1 rounded-full bg-accent/15 px-2.5 py-1 text-xs font-medium text-accent">
+            <BadgeCheck className="size-3.5" aria-hidden /> Delivered
           </span>
         </div>
 
-        <div className="mt-6 grid grid-cols-3 gap-3">
-          {[
-            { icon: Smartphone, label: "Mobile" },
-            { icon: Wifi, label: "Internet" },
-            { icon: Tv, label: "Streaming" },
-          ].map((q) => (
-            <div
-              key={q.label}
-              className="flex flex-col items-center gap-2 rounded-xl border border-border bg-background/60 py-3 text-xs text-muted"
-            >
-              <q.icon className="size-5 text-primary" aria-hidden />
-              {q.label}
-            </div>
-          ))}
+        {/* Chat bubbles */}
+        <div className="mt-6 space-y-3">
+          <div className="ml-auto max-w-[80%] rounded-2xl rounded-br-md bg-primary px-4 py-2.5 text-sm text-primary-foreground">
+            Payom: Ваш код подтверждения — 4821
+          </div>
+          <div className="max-w-[80%] rounded-2xl rounded-bl-md bg-background px-4 py-2.5 text-sm">
+            Скидка 20% только сегодня! Подробнее на payom.tj
+          </div>
+          <div className="ml-auto flex max-w-[80%] items-center justify-end gap-1.5 text-xs text-muted">
+            <Check className="size-3.5 text-accent" aria-hidden /> 12 480 доставлено
+          </div>
         </div>
 
-        <div className="mt-5 space-y-3">
-          {[
-            { name: "Skyline Mobile", amt: "-$24.00", time: "Just now" },
-            { name: "BrightGrid Power", amt: "-$86.50", time: "2 days ago" },
-          ].map((tx) => (
-            <div key={tx.name} className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span className="grid size-9 place-items-center rounded-full bg-primary/10">
-                  <Zap className="size-4 text-primary" aria-hidden />
-                </span>
-                <div className="text-sm">
-                  <p className="font-medium">{tx.name}</p>
-                  <p className="text-xs text-muted">{tx.time}</p>
-                </div>
-              </div>
-              <p className="text-sm font-semibold">{tx.amt}</p>
-            </div>
-          ))}
+        <div className="mt-5 grid grid-cols-2 gap-3">
+          <div className="rounded-xl border border-border bg-background p-3">
+            <p className="text-xs text-muted">{t.stats.items[0].label}</p>
+            <p className="mt-1 text-lg font-bold">120M+</p>
+          </div>
+          <div className="rounded-xl border border-border bg-background p-3">
+            <p className="text-xs text-muted">{t.stats.items[3].label}</p>
+            <p className="mt-1 text-lg font-bold">99.9%</p>
+          </div>
         </div>
       </div>
 
-      {/* Floating badge — secure */}
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -left-5 -top-5 flex items-center gap-2 rounded-2xl border border-border bg-surface px-4 py-3 shadow-[var(--shadow-soft)]"
       >
-        <span className="grid size-9 place-items-center rounded-full bg-emerald-500/15 text-emerald-500">
-          <ShieldCheck className="size-5" aria-hidden />
+        <span className="grid size-9 place-items-center rounded-full bg-primary/15 text-primary">
+          <Zap className="size-5" aria-hidden />
         </span>
         <div className="text-xs">
-          <p className="font-semibold">Secured</p>
-          <p className="text-muted">256-bit encrypted</p>
+          <p className="font-semibold">1000+ / sec</p>
+          <p className="text-muted">throughput</p>
         </div>
       </motion.div>
 
-      {/* Floating badge — instant */}
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
         className="absolute -bottom-5 -right-4 flex items-center gap-2 rounded-2xl border border-border bg-surface px-4 py-3 shadow-[var(--shadow-soft)]"
       >
-        <span className="grid size-9 place-items-center rounded-full bg-primary/15 text-primary">
-          <Zap className="size-5" aria-hidden />
+        <span className="grid size-9 place-items-center rounded-full bg-accent/15 text-accent">
+          <Users className="size-5" aria-hidden />
         </span>
         <div className="text-xs">
-          <p className="font-semibold">Instant</p>
-          <p className="text-muted">Settled in 0.4s</p>
+          <p className="font-semibold">4 500+</p>
+          <p className="text-muted">{t.stats.items[1].label}</p>
         </div>
       </motion.div>
     </motion.div>
