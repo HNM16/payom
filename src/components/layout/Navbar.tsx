@@ -20,11 +20,12 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
-    { label: t.nav.features, href: "/#features" },
-    { label: t.nav.how, href: "/#how" },
-    { label: t.nav.api, href: "/api" },
-    { label: t.nav.pricing, href: "/#pricing" },
-    { label: t.nav.contacts, href: "/#contacts" },
+    { label: t.nav.about, href: "/about" },
+    { label: t.nav.integrations, href: "/integrations" },
+    { label: t.nav.pricing, href: "/pricing" },
+    { label: t.nav.blog, href: "/blog" },
+    { label: t.nav.faq, href: "/faq" },
+    { label: t.nav.contacts, href: "/contacts" },
   ];
 
   useEffect(() => {

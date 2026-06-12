@@ -20,7 +20,7 @@ export function Faq() {
         <Reveal>
           <Accordion items={t.faq.items.map((f) => ({ question: f.q, answer: f.a }))} />
           <p className="mt-6 text-sm text-muted">
-            <Link href="/#contacts" className="font-medium text-primary hover:underline">
+            <Link href="/contacts" className="font-medium text-primary hover:underline">
               {t.faq.more} →
             </Link>
           </p>

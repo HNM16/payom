@@ -7,11 +7,15 @@ export const en: Dictionary = {
       "SMS gateway and SMS API for business. Bulk campaigns, one-time codes, and notifications to every mobile operator in Tajikistan — thousands of messages per second.",
   },
   nav: {
+    about: "About",
+    integrations: "Integrations",
+    pricing: "Pricing",
+    blog: "Blog",
+    faq: "FAQ",
+    contacts: "Contacts",
     features: "Features",
     how: "How it works",
     api: "API",
-    pricing: "Pricing",
-    contacts: "Contacts",
     login: "Log in",
     register: "Sign up",
     menu: "Menu",
@@ -223,35 +227,32 @@ export const en: Dictionary = {
       "SMS gateway and SMS API for businesses in Tajikistan. Bulk campaigns, codes, and notifications.",
     rights: "All rights reserved.",
     madeIn: "Made in Tajikistan",
-    columns: [
-      {
-        title: "Product",
-        links: [
-          { label: "Features", href: "/#features" },
-          { label: "Pricing", href: "/#pricing" },
-          { label: "API", href: "/api" },
-          { label: "Sign up", href: "/register" },
-        ],
-      },
-      {
-        title: "Company",
-        links: [
-          { label: "How it works", href: "/#how" },
-          { label: "Use cases", href: "/#use-cases" },
-          { label: "Integrations", href: "/#integrations" },
-          { label: "Contacts", href: "/#contacts" },
-        ],
-      },
-      {
-        title: "Support",
-        links: [
-          { label: "FAQ", href: "/#faq" },
-          { label: "Documentation", href: "/api" },
-          { label: "Log in", href: "/login" },
-          { label: "Contact", href: "/#contacts" },
-        ],
-      },
-    ],
+    nav: {
+      title: "Navigation",
+      links: [
+        { label: "Pricing", href: "/pricing" },
+        { label: "About", href: "/about" },
+        { label: "Blog", href: "/blog" },
+        { label: "FAQ", href: "/faq" },
+      ],
+    },
+    contact: {
+      title: "Get in touch",
+      telegramText: "Contact us on Telegram",
+      openChat: "Open chat",
+      emailLabel: "Email",
+    },
+    legalDocs: {
+      title: "Legal documents",
+      links: [
+        { label: "Offer agreement", href: "/legal/offer" },
+        { label: "Personal data processing policy", href: "/legal/privacy" },
+      ],
+    },
+    legalData: {
+      title: "Legal details",
+      lines: ["SI EMR No. 0210045678", "TIN 02004567891"],
+    },
   },
   auth: {
     login: {
@@ -310,5 +311,142 @@ export const en: Dictionary = {
     theme: "Theme",
     language: "Language",
     skip: "Skip to content",
+    readMore: "Read more",
+  },
+  pages: {
+    about: {
+      title: "About us",
+      subtitle: "Payom.tj is a reliable SMS service for businesses in Tajikistan.",
+      lead: "We help companies communicate with their customers quickly and reliably.",
+      body: [
+        "Payom.tj is an SMS gateway and bulk-messaging platform that brings every mobile network in Tajikistan together in one simple service. We build tools that make customer communication instant and effortless.",
+        "Thousands of companies use our service to send marketing campaigns, one-time codes, and important notifications. Our infrastructure delivers high speed and stable, round-the-clock operation.",
+      ],
+      values: [
+        { title: "Reliability", desc: "Stable message delivery and 99.9% service uptime." },
+        { title: "Speed", desc: "Thousands of messages per second with no delays or queues." },
+        { title: "Support", desc: "We help with onboarding and integration at any time." },
+        { title: "Transparency", desc: "Fair pricing and clear reports for every message." },
+      ],
+    },
+    integrations: {
+      title: "Integrations",
+      subtitle: "Connect Payom.tj to the tools and services you already use.",
+      partnersTitle: "Trusted by",
+      partnersSubtitle: "Partners and companies that use Payom.tj.",
+    },
+    pricing: {
+      title: "Pricing",
+      subtitle: "Transparent plans with no hidden fees.",
+    },
+    blog: {
+      title: "Blog",
+      subtitle: "News, updates, and tips on SMS messaging.",
+      posts: [
+        {
+          title: "How to launch your first SMS campaign",
+          excerpt:
+            "A step-by-step guide to creating and sending your first campaign on Payom.tj.",
+          date: "June 10, 2026",
+          category: "Guides",
+        },
+        {
+          title: "OTP codes: how to secure customer logins",
+          excerpt:
+            "We break down how one-time codes improve the security of your users.",
+          date: "June 2, 2026",
+          category: "Security",
+        },
+        {
+          title: "5 tips for effective campaigns",
+          excerpt:
+            "Practical recommendations that boost the response of your SMS campaigns.",
+          date: "May 24, 2026",
+          category: "Marketing",
+        },
+        {
+          title: "Integrate the SMS API in 10 minutes",
+          excerpt:
+            "We connect message sending to your website using the REST API.",
+          date: "May 15, 2026",
+          category: "Development",
+        },
+      ],
+    },
+    faq: {
+      title: "Frequently asked questions",
+      subtitle: "Everything you need to know about how the service works.",
+    },
+    contacts: {
+      title: "Contacts",
+      subtitle: "Reach us in whatever way is convenient — we're always available.",
+      telegramTitle: "Telegram",
+      telegramDesc: "Message us on Telegram — we reply quickly.",
+      openChat: "Open chat",
+      emailTitle: "Email",
+      phoneTitle: "Phone",
+      addressTitle: "Address",
+      address: "Dushanbe, Tajikistan",
+      formTitle: "Write to us",
+      formName: "Name",
+      formEmail: "Email",
+      formMessage: "Message",
+      formSubmit: "Send",
+      formSuccess: "Message sent",
+      formSuccessDesc: "Thank you! We'll get back to you shortly.",
+    },
+    legal: {
+      updated: "Last updated: June 2026",
+      offer: {
+        title: "Offer agreement",
+        sections: [
+          {
+            heading: "1. General provisions",
+            body: "This document is a public offer that defines the terms of use of the Payom.tj service. By registering for the service, you fully accept the terms of this agreement.",
+          },
+          {
+            heading: "2. Subject of the agreement",
+            body: "The service provides the ability to send SMS messages to mobile networks through the dashboard and API under the terms of the selected plan.",
+          },
+          {
+            heading: "3. Rights and obligations of the parties",
+            body: "The user agrees to use the service in accordance with the law and not to send messages that violate the rights of third parties. The service agrees to ensure message delivery within its technical capabilities.",
+          },
+          {
+            heading: "4. Cost and payment",
+            body: "The cost of services is determined by the current plans. Payment is made on a prepaid basis through the available top-up methods.",
+          },
+          {
+            heading: "5. Liability",
+            body: "The parties are liable for non-performance of obligations in accordance with the laws of the Republic of Tajikistan.",
+          },
+        ],
+      },
+      privacy: {
+        title: "Personal data processing policy",
+        sections: [
+          {
+            heading: "1. General provisions",
+            body: "This policy describes how the personal data of Payom.tj users is processed and protected.",
+          },
+          {
+            heading: "2. What data we collect",
+            body: "We process the data needed to provide the service: name, contact details, account information, and campaign history.",
+          },
+          {
+            heading: "3. Purposes of processing",
+            body: "Data is used to provide the service, technical support, billing, and improving service quality.",
+          },
+          {
+            heading: "4. Storage and protection",
+            body: "We apply technical and organizational measures to protect data from unauthorized access, alteration, or disclosure.",
+          },
+          {
+            heading: "5. User rights",
+            body: "Users may request access to their data, its correction, or deletion by contacting support.",
+          },
+        ],
+      },
+    },
   },
 };

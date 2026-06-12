@@ -31,11 +31,15 @@ interface Plan {
 export interface Dictionary {
   meta: { title: string; description: string };
   nav: {
+    about: string;
+    integrations: string;
+    pricing: string;
+    blog: string;
+    faq: string;
+    contacts: string;
     features: string;
     how: string;
     api: string;
-    pricing: string;
-    contacts: string;
     login: string;
     register: string;
     menu: string;
@@ -74,7 +78,15 @@ export interface Dictionary {
   cta: { title: string; subtitle: string; button: string; secondary: string };
   footer: {
     tagline: string;
-    columns: { title: string; links: { label: string; href: string }[] }[];
+    nav: { title: string; links: { label: string; href: string }[] };
+    contact: {
+      title: string;
+      telegramText: string;
+      openChat: string;
+      emailLabel: string;
+    };
+    legalDocs: { title: string; links: { label: string; href: string }[] };
+    legalData: { title: string; lines: string[] };
     rights: string;
     madeIn: string;
   };
@@ -119,5 +131,50 @@ export interface Dictionary {
     responseDesc: string;
   };
   notFound: { title: string; desc: string; home: string };
-  common: { theme: string; language: string; skip: string };
+  common: { theme: string; language: string; skip: string; readMore: string };
+  pages: {
+    about: {
+      title: string;
+      subtitle: string;
+      lead: string;
+      body: string[];
+      values: TitledItem[];
+    };
+    integrations: {
+      title: string;
+      subtitle: string;
+      partnersTitle: string;
+      partnersSubtitle: string;
+    };
+    pricing: { title: string; subtitle: string };
+    blog: {
+      title: string;
+      subtitle: string;
+      posts: { title: string; excerpt: string; date: string; category: string }[];
+    };
+    faq: { title: string; subtitle: string };
+    contacts: {
+      title: string;
+      subtitle: string;
+      telegramTitle: string;
+      telegramDesc: string;
+      openChat: string;
+      emailTitle: string;
+      phoneTitle: string;
+      addressTitle: string;
+      address: string;
+      formTitle: string;
+      formName: string;
+      formEmail: string;
+      formMessage: string;
+      formSubmit: string;
+      formSuccess: string;
+      formSuccessDesc: string;
+    };
+    legal: {
+      updated: string;
+      offer: { title: string; sections: { heading: string; body: string }[] };
+      privacy: { title: string; sections: { heading: string; body: string }[] };
+    };
+  };
 }
