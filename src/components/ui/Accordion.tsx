@@ -3,10 +3,14 @@
 import { useId, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import type { Faq } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-export function Accordion({ items }: { items: Faq[] }) {
+interface AccordionItemData {
+  question: string;
+  answer: string;
+}
+
+export function Accordion({ items }: { items: AccordionItemData[] }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
@@ -28,7 +32,7 @@ function AccordionItem({
   isOpen,
   onToggle,
 }: {
-  item: Faq;
+  item: AccordionItemData;
   isOpen: boolean;
   onToggle: () => void;
 }) {

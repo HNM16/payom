@@ -5,10 +5,10 @@
 
 @theme {
   /* Brand palette */
-  --color-primary: #2563eb;
+  --color-primary: #2b59e8;
   --color-primary-foreground: #ffffff;
-  --color-secondary: #0f172a;
-  --color-accent: #38bdf8;
+  --color-secondary: #0f1b34;
+  --color-accent: #10b981;
 
   /* Surfaces — light */
   --color-background: #f8fafc;
@@ -26,8 +26,8 @@
   --radius-3xl: 2rem;
 
   /* Shadows */
-  --shadow-soft: 0 4px 24px -8px rgb(15 23 42 / 0.12);
-  --shadow-glow: 0 8px 40px -12px rgb(37 99 235 / 0.45);
+  --shadow-soft: 0 6px 28px -10px rgb(15 27 52 / 0.14);
+  --shadow-glow: 0 10px 38px -12px rgb(43 89 232 / 0.42);
 
   /* Animations */
   --animate-marquee: marquee 32s linear infinite;

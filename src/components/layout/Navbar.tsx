@@ -5,18 +5,28 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { NAV_ITEMS } from "@/lib/data";
+import { useT } from "@/i18n/I18nProvider";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
-import { SearchCommand } from "./SearchCommand";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Navbar() {
+  const t = useT();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const links = [
+    { label: t.nav.about, href: "/about" },
+    { label: t.nav.integrations, href: "/integrations" },
+    { label: t.nav.pricing, href: "/pricing" },
+    { label: t.nav.blog, href: "/blog" },
+    { label: t.nav.faq, href: "/faq" },
+    { label: t.nav.contacts, href: "/contacts" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -25,7 +35,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => setMenuOpen(false), [pathname]);
 
   return (
@@ -45,54 +54,38 @@ export function Navbar() {
           >
             <Logo />
 
-            <ul className="hidden items-center gap-1 md:flex">
-              {NAV_ITEMS.map((item) => {
-                const active =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.href);
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      aria-current={active ? "page" : undefined}
-                      className={cn(
-                        "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                        active
-                          ? "text-primary"
-                          : "text-foreground/70 hover:text-foreground",
-                      )}
-                    >
-                      {item.label}
-                      {active ? (
-                        <motion.span
-                          layoutId="nav-active"
-                          className="absolute inset-0 -z-10 rounded-full bg-primary/10"
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      ) : null}
-                    </Link>
-                  </li>
-                );
-              })}
+            <ul className="hidden items-center gap-1 lg:flex">
+              {links.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="rounded-full px-4 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
 
             <div className="flex items-center gap-2">
               <div className="hidden sm:block">
-                <SearchCommand />
+                <LanguageSwitcher />
               </div>
               <ThemeToggle />
-              <div className="hidden md:block">
-                <Button href="/dashboard" size="sm">
-                  Dashboard
+              <div className="hidden items-center gap-2 lg:flex">
+                <Button href="/login" variant="ghost" size="sm">
+                  {t.nav.login}
+                </Button>
+                <Button href="/register" size="sm">
+                  {t.nav.register}
                 </Button>
               </div>
               <button
                 type="button"
                 onClick={() => setMenuOpen((o) => !o)}
-                aria-label="Toggle menu"
+                aria-label={t.nav.menu}
                 aria-expanded={menuOpen}
-                className="grid size-10 place-items-center rounded-full border border-border bg-surface md:hidden"
+                className="grid size-10 place-items-center rounded-full border border-border bg-surface lg:hidden"
               >
                 {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
               </button>
@@ -108,39 +101,31 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="glass overflow-hidden border-b border-border md:hidden"
+            className="glass overflow-hidden border-b border-border lg:hidden"
           >
             <Container className="py-4">
-              <div className="mb-4 sm:hidden">
-                <SearchCommand />
-              </div>
               <ul className="flex flex-col gap-1">
-                {NAV_ITEMS.map((item) => {
-                  const active =
-                    item.href === "/"
-                      ? pathname === "/"
-                      : pathname.startsWith(item.href);
-                  return (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className={cn(
-                          "block rounded-xl px-4 py-3 text-base font-medium transition-colors",
-                          active
-                            ? "bg-primary/10 text-primary"
-                            : "hover:bg-foreground/5",
-                        )}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  );
-                })}
+                {links.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="block rounded-xl px-4 py-3 text-base font-medium transition-colors hover:bg-foreground/5"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
-              <div className="mt-4">
-                <Button href="/dashboard" className="w-full">
-                  Open Dashboard
-                </Button>
+              <div className="mt-4 flex items-center justify-between gap-3">
+                <LanguageSwitcher />
+                <div className="flex flex-1 items-center gap-2">
+                  <Button href="/login" variant="outline" size="sm" className="flex-1">
+                    {t.nav.login}
+                  </Button>
+                  <Button href="/register" size="sm" className="flex-1">
+                    {t.nav.register}
+                  </Button>
+                </div>
               </div>
             </Container>
           </motion.div>

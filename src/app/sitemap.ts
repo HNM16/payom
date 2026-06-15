@@ -1,13 +1,23 @@
 import type { MetadataRoute } from "next";
-import { NAV_ITEMS } from "@/lib/data";
 
-const baseUrl = "https://veltra.pay";
+const baseUrl = "https://payom.tj";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [...NAV_ITEMS.map((n) => n.href), "/dashboard"];
-  const unique = Array.from(new Set(routes));
-
-  return unique.map((path) => ({
+  const routes = [
+    "/",
+    "/about",
+    "/integrations",
+    "/pricing",
+    "/blog",
+    "/faq",
+    "/contacts",
+    "/api",
+    "/login",
+    "/register",
+    "/legal/offer",
+    "/legal/privacy",
+  ];
+  return routes.map((path) => ({
     url: `${baseUrl}${path === "/" ? "" : path}`,
     lastModified: new Date(),
     changeFrequency: path === "/" ? "weekly" : "monthly",
